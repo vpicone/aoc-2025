@@ -12,48 +12,23 @@ import myInput from "./input.ts";
 
 const matrix = myInput.split("\n").map((line) => line.split(""));
 
-const checkPosition = (row: number, col: number): boolean => {
-  let numberOfRollsAround = 0;
-  // top left
-  if (matrix[row - 1]?.[col - 1] === "@") {
-    numberOfRollsAround++;
-  }
-  // top middle
-  if (matrix[row - 1]?.[col] === "@") {
-    numberOfRollsAround++;
-  }
-  // top right
-  if (matrix[row - 1]?.[col + 1] === "@") {
-    numberOfRollsAround++;
-  }
-  // left
-  if (matrix[row][col - 1] === "@") {
-    numberOfRollsAround++;
-  }
-  // right
-  if (matrix[row][col + 1] === "@") {
-    numberOfRollsAround++;
-  }
-  // bottom left
-  if (matrix[row + 1]?.[col - 1] === "@") {
-    numberOfRollsAround++;
-  }
-  // bottom middle
-  if (matrix[row + 1]?.[col] === "@") {
-    numberOfRollsAround++;
-  }
-  // bottom right
-  if (matrix[row + 1]?.[col + 1] === "@") {
-    numberOfRollsAround++;
-  }
+const directions = [
+  [-1, -1], [-1, 0], [-1, 1],
+  [0, -1],          [0, 1],
+  [1, -1],  [1, 0], [1, 1],
+];
 
-  return numberOfRollsAround < 4;
+const checkPosition = (row: number, col: number): boolean => {
+  const neighborCount = directions.filter(
+    ([dr, dc]) => matrix[row + dr]?.[col + dc] === "@"
+  ).length;
+  return neighborCount < 4;
 };
 
 let previousTotalValid = 0;
 let totalValidRolls = 0;
-let shouldContinue = true;
-while (shouldContinue) {
+do {
+  previousTotalValid = totalValidRolls;
   for (let row = 0; row < matrix.length; row++) {
     for (let col = 0; col < matrix[row].length; col++) {
       if (matrix[row][col] === "@") {
@@ -64,11 +39,6 @@ while (shouldContinue) {
       }
     }
   }
-  if (previousTotalValid === totalValidRolls) {
-    shouldContinue = false;
-  } else {
-    previousTotalValid = totalValidRolls;
-  }
-}
+} while (previousTotalValid !== totalValidRolls);
 
 console.log(totalValidRolls);
