@@ -59,31 +59,55 @@ const sortedDistances = allPairDistances.sort((a, b) => {
 // });
 
 const circuits: Set<number>[] = [];
-let shortestConnections = 0;
 
-sortedDistances.forEach(({ p1, p2 }) => {
-  if (shortestConnections < 1000) {
-    shortestConnections += 1;
+// sortedDistances.forEach(({ p1, p2 }) => {
+//   const circuit1Index = circuits.findIndex((c) => c.has(p1));
+//   const circuit2Index = circuits.findIndex((c) => c.has(p2));
 
-    const circuit1Index = circuits.findIndex((c) => c.has(p1));
-    const circuit2Index = circuits.findIndex((c) => c.has(p2));
+//   if (circuit1Index >= 0 && circuit2Index >= 0) {
+//     // Both in circuits - merge if different
+//     if (circuit1Index !== circuit2Index) {
+//       circuits[circuit2Index].forEach((p) => circuits[circuit1Index].add(p));
+//       circuits.splice(circuit2Index, 1);
+//     }
+//     // Same circuit - nothing to do
+//   } else if (circuit1Index >= 0) {
+//     circuits[circuit1Index].add(p2);
+//   } else if (circuit2Index >= 0) {
+//     circuits[circuit2Index].add(p1);
+//   } else {
+//     circuits.push(new Set([p1, p2]));
+//   }
+// });
 
-    if (circuit1Index >= 0 && circuit2Index >= 0) {
-      // Both in circuits - merge if different
-      if (circuit1Index !== circuit2Index) {
-        circuits[circuit2Index].forEach((p) => circuits[circuit1Index].add(p));
-        circuits.splice(circuit2Index, 1);
-      }
-      // Same circuit - nothing to do
-    } else if (circuit1Index >= 0) {
-      circuits[circuit1Index].add(p2);
-    } else if (circuit2Index >= 0) {
-      circuits[circuit2Index].add(p1);
-    } else {
-      circuits.push(new Set([p1, p2]));
+// for of allows breaking
+for (const sortedDistance of sortedDistances) {
+  const { p1, p2 } = sortedDistance;
+  const circuit1Index = circuits.findIndex((c) => c.has(p1));
+  const circuit2Index = circuits.findIndex((c) => c.has(p2));
+
+  if (circuit1Index >= 0 && circuit2Index >= 0) {
+    // Both in circuits - merge if different
+    if (circuit1Index !== circuit2Index) {
+      circuits[circuit2Index].forEach((p) => circuits[circuit1Index].add(p));
+      circuits.splice(circuit2Index, 1);
     }
+    // Same circuit - nothing to do
+  } else if (circuit1Index >= 0) {
+    circuits[circuit1Index].add(p2);
+  } else if (circuit2Index >= 0) {
+    circuits[circuit2Index].add(p1);
+  } else {
+    circuits.push(new Set([p1, p2]));
   }
-});
+
+  if (circuits.length === 1 && circuits[0].size === points.length) {
+    console.log("Final circuit achieved!");
+    console.log(`${points[p1]} | ${points[p2]}`);
+    console.log(points[p1][0] * points[p2][0]);
+    break;
+  }
+}
 
 const sizes = circuits.map((circuit) => circuit.size);
 const sizesInOrder = sizes.sort((a, b) => b - a);
