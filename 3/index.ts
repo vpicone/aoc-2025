@@ -1,3 +1,6 @@
+// Day 3: Extract the largest 12-digit subsequence from each number string.
+// Strategy: Greedy selection - for each position needed, pick the largest digit
+// from the valid range (ensuring enough digits remain for the rest).
 import mynumbers from "./input.ts";
 // const mynumbers = [
 //   "987654321111111",

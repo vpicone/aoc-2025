@@ -1,3 +1,6 @@
+// Day 4: Remove cells from a grid based on neighbor count (cellular automaton).
+// Strategy: Repeatedly scan grid, remove '@' cells with fewer than 4 neighbors.
+// Continue until no more cells can be removed. Count total removed cells.
 import myInput from "./input.ts";
 // const myInput = `..@@.@@@@.
 // @@@.@.@.@@

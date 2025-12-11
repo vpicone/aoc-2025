@@ -1,3 +1,5 @@
+// Day 1: Track position on a circular track (0-99) moving based on direction/magnitude.
+// Strategy: Simulate movement with wraparound, count how many times we land on position 0.
 import input from "./input.ts";
 let position = 50;
 let timesAtZero = 0;

@@ -1,3 +1,6 @@
+// Day 5: Check which ingredients fall within "fresh" ID ranges.
+// Strategy: Part 1 - count ingredients in any range.
+// Part 2 - merge overlapping ranges, count total unique fresh IDs.
 import myInput from "./input.ts";
 
 const ranges = myInput

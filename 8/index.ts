@@ -1,3 +1,6 @@
+// Day 8: Connect 3D points into a single spanning tree using shortest distances.
+// Strategy: Kruskal's algorithm - sort all pairwise distances, greedily add edges
+// that connect different components using Union-Find. Answer uses the final edge's points.
 import input from "./input.ts";
 // const input = `162,817,812
 // 57,618,57

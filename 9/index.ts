@@ -1,3 +1,5 @@
+// Day 9 Part 1: Find the largest rectangle area between any two tile coordinates.
+// Strategy: Brute force all pairs of tiles, calculate bounding box area (inclusive).
 import input from "./input.ts";
 // const input = `7,1
 // 11,1

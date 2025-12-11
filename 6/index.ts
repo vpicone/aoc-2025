@@ -1,3 +1,7 @@
+// Day 6: Parse a transposed grid of numbers with operators, compute sum of results.
+// Strategy: Transpose input matrix, group into chunks by column, apply + or * operator
+// to each chunk's numbers, sum all chunk results.
+
 // const input = `123 328  51 64
 //  45 64  387 23
 //   6 98  215 314

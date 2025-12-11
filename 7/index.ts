@@ -1,3 +1,6 @@
+// Day 7: Count paths from start 'S' to bottom, where '^' symbols force left/right splits.
+// Strategy: Dynamic programming with column tracking. At each row, propagate path counts.
+// When hitting '^', split count to left and right columns; otherwise continue straight down.
 import input from "./input.ts";
 // const input = `.......S.......
 // ...............
