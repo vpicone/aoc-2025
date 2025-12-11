@@ -1,3 +1,8 @@
+// Part 2: Count paths from "svr" to "out" that visit BOTH "dac" and "fft".
+// Strategy: Split into two cases based on visit order, multiply segment counts:
+//   case1: svr → dac → fft → out
+//   case2: svr → fft → dac → out
+// Uses memoization to avoid recalculating paths between the same node pairs.
 import input from "./input.ts";
 // const input = `svr: aaa bbb
 // aaa: fft

@@ -1,3 +1,5 @@
+// Part 1: Count all paths from "you" to "out" in a directed acyclic graph.
+// Strategy: DFS recursion - base case returns 1 at "out", otherwise sum paths from all neighbors.
 import input from "./input.ts";
 // const input = `aaa: you hhh
 // you: bbb ccc
