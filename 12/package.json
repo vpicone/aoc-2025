@@ -1,0 +1,7 @@
+{
+  "type": "module",
+  "dependencies": {
+    "dancing-links": "^4.3.2",
+    "dlx": "^0.2.1"
+  }
+}
